@@ -248,5 +248,10 @@ namespace LibrarySys
             f1.ShowDialog();
             
         }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

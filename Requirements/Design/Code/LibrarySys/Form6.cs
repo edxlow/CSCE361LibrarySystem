@@ -36,18 +36,17 @@ namespace LibrarySys
                 SqlCommand sqlCmd1 = new SqlCommand("AddLocation", SQLLibrary);
                 sqlCmd1.CommandType = CommandType.StoredProcedure;
 
-                SqlDataAdapter IDcount = new SqlDataAdapter("SELECT * FROM Library361.dbo.BookInfoTbl WHERE BookTitle LIKE '" + bktitlebox.Text + "'", SQLLibrary);
-                DataSet CheckID = new DataSet();
-                IDcount.Fill(CheckID);
+                //SqlDataAdapter IDcount = new SqlDataAdapter("SELECT * FROM Library361.dbo.BookInfoTbl WHERE BookTitle LIKE '" + bktitlebox.Text + "'", SQLLibrary);
+                //DataSet CheckID = new DataSet();
+                //IDcount.Fill(CheckID);
 
                 Random random = new Random();
                 int randomNumber = random.Next(0, 99999);
 
-                if (CheckID.Tables.Count > 0 && CheckID.Tables[0].Rows.Count > 0)
-                {
+           
                     sqlCmd.Parameters.Add("@BookID", bktitlebox.Text.Trim() + "(" + randomNumber + ")");
                     sqlCmd1.Parameters.Add("@BookID", bktitlebox.Text.Trim() + "(" + randomNumber + ")");
-                }
+             
 
                 sqlCmd.Parameters.Add("@BookTitle", bktitlebox.Text.Trim());
                 sqlCmd.Parameters.Add("@PublishDate", pdatebox.Text.Trim());

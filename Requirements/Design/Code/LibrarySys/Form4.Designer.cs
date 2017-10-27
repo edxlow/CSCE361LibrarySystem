@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.deletebkbtn = new System.Windows.Forms.Button();
             this.updatebkbtn = new System.Windows.Forms.Button();
+            this.addbkbtn = new System.Windows.Forms.Button();
             this.Lshelflbl = new System.Windows.Forms.Label();
             this.Llibrarylbl = new System.Windows.Forms.Label();
             this.blocationlbl = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.searchbox = new System.Windows.Forms.TextBox();
             this.stitlebtn = new System.Windows.Forms.Button();
-            this.addbkbtn = new System.Windows.Forms.Button();
             this.bugbtn = new System.Windows.Forms.Button();
             this.logoutbtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -92,6 +92,16 @@
             this.updatebkbtn.Text = "Update Book";
             this.updatebkbtn.UseVisualStyleBackColor = true;
             this.updatebkbtn.Click += new System.EventHandler(this.updatebkbtn_Click);
+            // 
+            // addbkbtn
+            // 
+            this.addbkbtn.Location = new System.Drawing.Point(269, 218);
+            this.addbkbtn.Name = "addbkbtn";
+            this.addbkbtn.Size = new System.Drawing.Size(104, 45);
+            this.addbkbtn.TabIndex = 11;
+            this.addbkbtn.Text = "Add Book";
+            this.addbkbtn.UseVisualStyleBackColor = true;
+            this.addbkbtn.Click += new System.EventHandler(this.addbkbtn_Click);
             // 
             // Lshelflbl
             // 
@@ -199,16 +209,6 @@
             this.stitlebtn.UseVisualStyleBackColor = true;
             this.stitlebtn.Click += new System.EventHandler(this.stitlebtn_Click);
             // 
-            // addbkbtn
-            // 
-            this.addbkbtn.Location = new System.Drawing.Point(269, 218);
-            this.addbkbtn.Name = "addbkbtn";
-            this.addbkbtn.Size = new System.Drawing.Size(104, 45);
-            this.addbkbtn.TabIndex = 11;
-            this.addbkbtn.Text = "Add Book";
-            this.addbkbtn.UseVisualStyleBackColor = true;
-            this.addbkbtn.Click += new System.EventHandler(this.addbkbtn_Click);
-            // 
             // bugbtn
             // 
             this.bugbtn.Location = new System.Drawing.Point(787, 16);
@@ -246,6 +246,7 @@
             this.Controls.Add(this.stitlebtn);
             this.Name = "Form4";
             this.Text = "Admin Page";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

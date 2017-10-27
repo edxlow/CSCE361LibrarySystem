@@ -181,7 +181,7 @@
             this.welcomelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomelbl.Location = new System.Drawing.Point(39, 21);
             this.welcomelbl.Name = "welcomelbl";
-            this.welcomelbl.Size = new System.Drawing.Size(100, 23);
+            this.welcomelbl.Size = new System.Drawing.Size(291, 23);
             this.welcomelbl.TabIndex = 0;
             this.welcomelbl.Text = "Welcome";
             // 

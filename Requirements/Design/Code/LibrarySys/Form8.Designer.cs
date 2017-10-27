@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.buglistbox = new System.Windows.Forms.ListBox();
-            this.userIDlbl = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.descriptionbox = new System.Windows.Forms.TextBox();
@@ -57,26 +55,6 @@
             this.buglistbox.Size = new System.Drawing.Size(211, 316);
             this.buglistbox.TabIndex = 1;
             this.buglistbox.SelectedIndexChanged += new System.EventHandler(this.buglistbox_SelectedIndexChanged);
-            // 
-            // userIDlbl
-            // 
-            this.userIDlbl.AutoSize = true;
-            this.userIDlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userIDlbl.Location = new System.Drawing.Point(381, 86);
-            this.userIDlbl.Name = "userIDlbl";
-            this.userIDlbl.Size = new System.Drawing.Size(11, 16);
-            this.userIDlbl.TabIndex = 19;
-            this.userIDlbl.Text = " ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(272, 86);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 16);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "User ID : ";
             // 
             // label2
             // 
@@ -129,8 +107,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(785, 425);
-            this.Controls.Add(this.userIDlbl);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.descriptionbox);
@@ -140,6 +116,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form8";
             this.Text = "Form8";
+            this.Load += new System.EventHandler(this.Form8_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,8 +126,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox buglistbox;
-        private System.Windows.Forms.Label userIDlbl;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox descriptionbox;

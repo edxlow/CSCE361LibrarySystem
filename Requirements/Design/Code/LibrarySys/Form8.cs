@@ -22,6 +22,7 @@ namespace LibrarySys
         {
             InitializeComponent();
             bug_listbox();
+            SQLLibrary.Close();
         }
 
         private void buglistbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +97,11 @@ namespace LibrarySys
         private void cancelbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form8_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
