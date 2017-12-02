@@ -21,6 +21,8 @@ namespace LibrarySys
         public Form4(string userName)
         {
             InitializeComponent();
+            updatebkbtn.Enabled = false;
+            deletebkbtn.Enabled = false;
             SQLLibrary.Open();
             SqlDataAdapter sqlCmd = new SqlDataAdapter("SELECT Name FROM UserInfoTbl where UserID ='" + userName + "'", SQLLibrary);
             System.Data.DataTable nametable = new System.Data.DataTable();
@@ -76,6 +78,11 @@ namespace LibrarySys
 
                     MessageBox.Show("Delete Successful!", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     title_listbox();
+                    Llibrarylbl.Text = "Library : ";
+                    blocationlbl.Text = "Location : ";
+                    Lshelflbl.Text = "Shelf : ";
+                    bdescriptionlbl.Text = "Book Description : ";
+                    availbl.Text = "Availability :";
                 }
 
             }
@@ -100,10 +107,13 @@ namespace LibrarySys
     
         private void titlelistbox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            updatebkbtn.Enabled = true;
+            deletebkbtn.Enabled = true;
             Llibrarylbl.Text = "Library : ";
             blocationlbl.Text = "Location : ";
             Lshelflbl.Text = "Shelf : ";
             bdescriptionlbl.Text = "Book Description : ";
+            availbl.Text = "Availability : ";
 
             string Query = "select * from LocationTbl,BookInfoTbl where LocationTbl.BookID=BookInfoTbl.BookID AND BookInfoTbl.BookID LIKE'" + titlelistbox.Text + "'";
             //string Query1 = "select * from BookInfoTbl where BookID LIKE'" + titlelistbox.Text + "'";
@@ -125,7 +135,7 @@ namespace LibrarySys
                 int LocationVal = bookReader.GetOrdinal("Location");
                 int ShelfVal = bookReader.GetOrdinal("ShelfNumber");
                 int bkdescription = bookReader.GetOrdinal("BookDescription");
-
+                int AvailVal = bookReader.GetOrdinal("Quantity");
 
                 while (bookReader.Read())
                 {
@@ -134,6 +144,14 @@ namespace LibrarySys
                     blocationlbl.Text = "Location : " + bookReader.GetString(LocationVal);
                     Lshelflbl.Text = "Shelf : " + bookReader.GetString(ShelfVal);
                     bdescriptionlbl.Text = "Book Description : " + bookReader.GetString(bkdescription);
+                    if (bookReader.GetString(AvailVal) != "0")
+                    {
+                        availbl.Text = "Availability : Yes (" + bookReader.GetString(AvailVal) +")";
+                    }
+                    else
+                    {
+                        availbl.Text = "Availability : No";
+                    }
                 }
             }
 
@@ -252,6 +270,12 @@ namespace LibrarySys
         private void Form4_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void chckoutrequestbtn_Click(object sender, EventArgs e)
+        {
+            Form9 f9 = new Form9();
+            f9.ShowDialog();
         }
     }
 }

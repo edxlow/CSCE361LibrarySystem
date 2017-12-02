@@ -54,6 +54,7 @@ namespace LibrarySys
                 sqlCmd.Parameters.Add("@Genre", genrebox.Text.Trim());
                 sqlCmd.Parameters.Add("@BookDescription", bkdescripbox.Text.Trim());
                 sqlCmd.Parameters.Add("@Author", authorbox.Text.Trim());
+                sqlCmd.Parameters.Add("@Quantity", quantitybox.Text.Trim());
 
                 sqlCmd1.Parameters.Add("@BookTitle", bktitlebox.Text.Trim());
                 sqlCmd1.Parameters.Add("@Library", librarybox.Text.Trim());
@@ -61,12 +62,12 @@ namespace LibrarySys
                 sqlCmd1.Parameters.Add("@ShelfNumber", shelfbox.Text.Trim());
 
 
-                if (!string.IsNullOrWhiteSpace(bktitlebox.Text) && !string.IsNullOrWhiteSpace(pdatebox.Text) && !string.IsNullOrWhiteSpace(ISBNbox.Text) && !string.IsNullOrWhiteSpace(genrebox.Text) && !string.IsNullOrWhiteSpace(bkdescripbox.Text) && !string.IsNullOrWhiteSpace(authorbox.Text))
+                if (!string.IsNullOrWhiteSpace(bktitlebox.Text) && !string.IsNullOrWhiteSpace(pdatebox.Text) && !string.IsNullOrWhiteSpace(ISBNbox.Text) && !string.IsNullOrWhiteSpace(genrebox.Text) && !string.IsNullOrWhiteSpace(bkdescripbox.Text) && !string.IsNullOrWhiteSpace(authorbox.Text) && !string.IsNullOrWhiteSpace(librarybox.Text) && !string.IsNullOrWhiteSpace(locationbox.Text) && !string.IsNullOrWhiteSpace(shelfbox.Text) && !string.IsNullOrWhiteSpace(quantitybox.Text))
                 {
                     sqlCmd.ExecuteNonQuery();
                     sqlCmd1.ExecuteNonQuery();
                     MessageBox.Show("Add Successful", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
+                    this.Close();
                 }
 
                 else
@@ -89,8 +90,18 @@ namespace LibrarySys
             this.Close();
         }
 
-   
+        private void Form6_Load(object sender, EventArgs e)
+        {
 
-     
+        }
+
+        private void KeyPressNum(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

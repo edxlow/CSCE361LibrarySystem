@@ -34,6 +34,7 @@ namespace LibrarySys
             try
             {
                 SQLLibrary.Open();
+               
 
                 SqlCommand sqlCmd = new SqlCommand("BugReporting", SQLLibrary);
                 sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -54,14 +55,19 @@ namespace LibrarySys
                 sqlCmd.Parameters.Add("@Category", categorybox.Text.Trim());
                 sqlCmd.Parameters.Add("@Comments", descriptionbox.Text.Trim());
 
-                if (!string.IsNullOrWhiteSpace(categorybox.Text) && !string.IsNullOrWhiteSpace(descriptionbox.Text))
+                if (descriptionbox.MaxLength> 200)
+                {
+                    MessageBox.Show("Description is too long!", "Error", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+
+                if (!string.IsNullOrWhiteSpace(categorybox.Text) && !string.IsNullOrWhiteSpace(descriptionbox.Text) && descriptionbox.MaxLength <= 200)
                 {
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Bug Reported Successful", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
 
-                else 
+                else if (!string.IsNullOrWhiteSpace(categorybox.Text) && !string.IsNullOrWhiteSpace(descriptionbox.Text))
                 {
                     MessageBox.Show("Please fill in all empty boxes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -74,6 +80,11 @@ namespace LibrarySys
             {
                 SQLLibrary.Close();
             }
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

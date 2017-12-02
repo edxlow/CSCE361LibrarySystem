@@ -41,6 +41,7 @@ namespace LibrarySys
             int LibraryVal = bookReader.GetOrdinal("Library");
             int LocationVal = bookReader.GetOrdinal("Location");
             int ShelfVal = bookReader.GetOrdinal("ShelfNumber");
+            int QuantityVal = bookReader.GetOrdinal("Quantity");
             
             while (bookReader.Read())
             {
@@ -53,6 +54,7 @@ namespace LibrarySys
                 librarybox.Text = bookReader.GetString(LibraryVal);
                 locationbox.Text = bookReader.GetString(LocationVal);
                 shelfbox.Text = bookReader.GetString(ShelfVal);
+                quantitybox.Text = bookReader.GetString(QuantityVal);
             }
 
             SQLLibrary.Close();
@@ -61,36 +63,74 @@ namespace LibrarySys
 
         private void updatebtn_Click(object sender, EventArgs e)
         {
-            SQLLibrary.Open();
-            SqlCommand sqlcmd = new SqlCommand("UpdateBook", SQLLibrary);
-            SqlCommand sqlcmd1 = new SqlCommand("UpdateBookLocation", SQLLibrary);
-            sqlcmd.CommandType = CommandType.StoredProcedure;
-            sqlcmd1.CommandType = CommandType.StoredProcedure;
-            sqlcmd.Parameters.AddWithValue("BookID", bkIDlbl.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("BookTitle", bktitlebox.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("Author", authorbox.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("Genre", genrebox.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("BookDescription", bkdescripbox.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("PublishDate", pdatebox.Text.Trim());
-            sqlcmd.Parameters.AddWithValue("ISBN", ISBNbox.Text.Trim());
 
-            sqlcmd1.Parameters.AddWithValue("BookID", bkIDlbl.Text.Trim());
-            sqlcmd1.Parameters.AddWithValue("BookTitle", bktitlebox.Text.Trim());
-            sqlcmd1.Parameters.AddWithValue("Library", librarybox.Text.Trim());
-            sqlcmd1.Parameters.AddWithValue("ShelfNumber", shelfbox.Text.Trim());
-            sqlcmd1.Parameters.AddWithValue("Location", locationbox.Text.Trim());
+            try
+            {
+                SQLLibrary.Open();
+                SqlCommand sqlcmd = new SqlCommand("UpdateBook", SQLLibrary);
+                SqlCommand sqlcmd1 = new SqlCommand("UpdateBookLocation", SQLLibrary);
+                sqlcmd.CommandType = CommandType.StoredProcedure;
+                sqlcmd1.CommandType = CommandType.StoredProcedure;
+                sqlcmd.Parameters.AddWithValue("BookID", bkIDlbl.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("BookTitle", bktitlebox.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("Author", authorbox.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("Genre", genrebox.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("BookDescription", bkdescripbox.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("PublishDate", pdatebox.Text.Trim());
+                sqlcmd.Parameters.AddWithValue("ISBN", ISBNbox.Text.Trim());
+                sqlcmd.Parameters.Add("@Quantity", quantitybox.Text.Trim());
 
-            sqlcmd1.ExecuteNonQuery();
-            sqlcmd.ExecuteNonQuery();
+                sqlcmd1.Parameters.AddWithValue("BookID", bkIDlbl.Text.Trim());
+                sqlcmd1.Parameters.AddWithValue("BookTitle", bktitlebox.Text.Trim());
+                sqlcmd1.Parameters.AddWithValue("Library", librarybox.Text.Trim());
+                sqlcmd1.Parameters.AddWithValue("ShelfNumber", shelfbox.Text.Trim());
+                sqlcmd1.Parameters.AddWithValue("Location", locationbox.Text.Trim());
 
-            MessageBox.Show("Update Successful !", "Update Book", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SQLLibrary.Close();
-            this.Close();
+                if (!string.IsNullOrWhiteSpace(bktitlebox.Text) && !string.IsNullOrWhiteSpace(pdatebox.Text) && !string.IsNullOrWhiteSpace(ISBNbox.Text) && !string.IsNullOrWhiteSpace(genrebox.Text) && !string.IsNullOrWhiteSpace(bkdescripbox.Text) && !string.IsNullOrWhiteSpace(authorbox.Text) && !string.IsNullOrWhiteSpace(librarybox.Text) && !string.IsNullOrWhiteSpace(locationbox.Text) && !string.IsNullOrWhiteSpace(shelfbox.Text) && !string.IsNullOrWhiteSpace(quantitybox.Text))
+                {
+                    sqlcmd.ExecuteNonQuery();
+                    sqlcmd1.ExecuteNonQuery();
+                    MessageBox.Show("Update Successful", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+
+                else
+                {
+                    MessageBox.Show("Please fill up all the empty boxes! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                SQLLibrary.Close();
+            }
         }
 
         private void cancelbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Form7_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KeyPressNum(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
