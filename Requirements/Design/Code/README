@@ -1,1 +1,16 @@
-TEST
+The LibraryDatabase folder contains a .bak file which is our database.
+
+The LibrarySys folder contains the code for our library system.
+
+Classes
+----------
+Form1.cs --> Login page
+Form2.cs --> Student account registration page
+Form3.cs --> Student page 
+Form4.cs --> Admin page 
+Form5.cs --> Bug report submission page (From student page)
+Form6.cs --> Add book page
+Form7.cs --> Update book page
+Form8.cs --> View bug report page (From Admin page)
+Form9.cs --> View checkout request page (From admin page)
+Form10.cs --> View checked out books page (Student page)
