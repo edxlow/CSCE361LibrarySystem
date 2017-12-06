@@ -9,8 +9,13 @@ Form2.cs --> Student account registration page
 Form3.cs --> Student page 
 Form4.cs --> Admin page 
 Form5.cs --> Bug report submission page (From student page)
-Form6.cs --> Add book page
-Form7.cs --> Update book page
+Form6.cs --> Add book page (From admin page)
+Form7.cs --> Update book page (From admin page)
 Form8.cs --> View bug report page (From Admin page)
 Form9.cs --> View checkout request page (From admin page)
 Form10.cs --> View checked out books page (Student page)
+
+Designer classes such as "Form1.Designer.cs" are classes which contains the code that handles the design in each page.
+
+If using Visual Studio, clicking on the classes such as Form1.cs should display the page design. Double click anywhere on the page to view
+the code that handles the funcionality of buttons or white boxes.
